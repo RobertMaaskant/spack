@@ -15,6 +15,7 @@ class PyUrllib3(PythonPackage):
 
     license("MIT")
 
+    version("2.4.0", sha256="414bc6535b787febd7567804cc015fee39daab8ad86268f1310a9250697de466")
     version("2.1.0", sha256="df7aa8afb0148fa78488e7899b2c59b5f4ffcfa82e6c54ccb9dd37c1d7b52d54")
     version("2.0.7", sha256="c97dfde1f7bd43a71c8d2a58e369e9b2bf692d1334ea9f9cae55add7d0dd0f84")
     version("2.0.6", sha256="b19e1a85d206b56d7df1d5e683df4a7725252a964e3993648dd0fb5a1c157564")
@@ -36,8 +37,11 @@ class PyUrllib3(PythonPackage):
     # Historical variant
     variant("secure", default=False, when="@:2.0", description="Add SSL/TLS support")
 
+    depends_on("python@3.9:", when="@2.3:", type=("build", "run"))
     depends_on("python@3.8:", when="@2.1:", type=("build", "run"))
+
     depends_on("py-hatchling@1.6:1", when="@2:", type="build")
+    depends_on("py-hatch-vcs@=0.4.0", when="@2.2.3:", type="build")
 
     with when("+brotli"):
         depends_on("py-brotli@1.0.9:", when="@1.26.9:", type=("build", "run"))
